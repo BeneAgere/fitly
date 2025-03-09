@@ -7,24 +7,27 @@ tools = [{
             "type": "object",
             "properties": {
                 "start_lat": {
-                    "type": "string",
+                    "type": "number",
                     "description": "Starting latitude"
                 },
                 "start_long": {
-                    "type": "string",
+                    "type": "number",
                     "description": "Start Longitude"
                 },
                 "end_lat": {
-                    "type": "string",
+                    "type": "number",
                     "description": "End Latitude"
                 },
                 "end_long": {
-                    "type": "string",
+                    "type": "number",
                     "description": "End Longitude"
                 }
             },
             "required": [
-                "location"
+                "start_lat",
+                "start_long",
+                "end_lat",
+                "end_long"
             ],
             "additionalProperties": False
         },
@@ -35,7 +38,7 @@ tools = [{
 
 import requests
 
-def get_walking_route(api_key, start_lat,start_long, end_lat,end_long):
+def get_walking_route(api_key, start_lat, start_long, end_lat, end_long):
     url = "https://routes.googleapis.com/directions/v2:computeRoutes"
     headers = {
         "Content-Type": "application/json",
