@@ -6,8 +6,6 @@
 
 import SwiftUI
 
-// Questionairre
-// Sart
 
 struct ContentView: View {
     @StateObject private var webSocketManager = WebSocketManager()
