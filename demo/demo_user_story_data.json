@@ -1,6 +1,6 @@
 {
   "profile": {
-    "age": 35,
+    "age": "35",
     "gender": "male",
     "fitness_level": "beginner",
     "goal": "run 5K without stopping with a view",
@@ -8,47 +8,70 @@
   },
   "sessions": [
     {
-      "datetime": "2025-03-09T3:29:00:00Z",
+      "datetime": "2025-03-09T03:29:25.370Z",
       "location": {
         "latitude": 37.80268094322795,
-        "longitude": -122.40328083936252
+        "longitude": -122.40328083936252,
+        "tag": "Hult Business School"
       },
       "distance_traveled": 0.0,
       "heartrate": 120,
       "destination": {
-        "latitude": 37.7755,
-        "longitude": -122.4201
+        "latitude": 37.80430419885728,
+        "longitude": -122.42771921495286
       },
       "preferred_distance": 5.0
     },
     {
-      "datetime": "2025-03-09T08:10:00Z",
+      "datetime": "2025-03-09T04:29:25.370Z",
       "location": {
         "latitude": 37.80430419885728,
-        "longitude": -122.42771921495286
+        "longitude": -122.42771921495286,
+        "tag": "Patrick's Green in Fort Mason"
       },
       "distance_traveled": 2.57,
       "heartrate": 135,
       "destination": {
-        "latitude": 37.7761,
-        "longitude": -122.4210
+        "latitude": 37.80361832716698,
+        "longitude": -122.46499429128124,
+        "tag": "Chrissy Field"
       },
       "preferred_distance": 5.0,
       "goal": "I'm feeling good. Let's make this a 10km"
     },
     {
-      "datetime": "2025-03-09T08:10:00Z",
+      "datetime": "2025-03-09T05:29:25.370Z",
       "location": {
-        "latitude": 37.7755,
-        "longitude": -122.4201
+        "latitude": 37.80503307111832,
+        "longitude": -122.4488361765279,
+        "tag": "Little Marina Green Picnic Area"
       },
       "distance_traveled": 1.2,
       "heartrate": 130,
       "destination": {
-        "latitude": 37.7761,
-        "longitude": -122.4210
+        "latitude": 37.80361832716698,
+        "longitude": -122.46499429128124
       },
-      "preferred_distance": 5.0
+      "preferred_distance": 5.0,
+      "goal": "Oh no. I pushed too hard. I don't think I can do the 10km. Please get me back.",
+      "current_location_tag": "Patrick's Green in Fort Mason"
     },
+    {
+      "datetime": "2025-03-09T06:29:25.370Z",
+      "location": {
+        "latitude": 37.805926747186746,
+        "longitude": -122.44129548409606,
+        "tag": "Marina Green"
+      },
+      "distance_traveled": 1.2,
+      "heartrate": 172,
+      "destination": {
+        "latitude": 37.80268094322795,
+        "longitude": -122.40328083936252,
+        "tag": "Hult Business School"
+      },
+      "preferred_distance": 5.0,
+      "goal": "Just get me back safely"
+    }
   ]
 }
