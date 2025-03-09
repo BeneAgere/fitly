@@ -1,0 +1,54 @@
+{
+  "profile": {
+    "age": 35,
+    "gender": "male",
+    "fitness_level": "beginner",
+    "goal": "run 5K without stopping with a view",
+    "preferred_distance": 5.0
+  },
+  "sessions": [
+    {
+      "datetime": "2025-03-09T3:29:00:00Z",
+      "location": {
+        "latitude": 37.80268094322795,
+        "longitude": -122.40328083936252
+      },
+      "distance_traveled": 0.0,
+      "heartrate": 120,
+      "destination": {
+        "latitude": 37.7755,
+        "longitude": -122.4201
+      },
+      "preferred_distance": 5.0
+    },
+    {
+      "datetime": "2025-03-09T08:10:00Z",
+      "location": {
+        "latitude": 37.80430419885728,
+        "longitude": -122.42771921495286
+      },
+      "distance_traveled": 2.57,
+      "heartrate": 135,
+      "destination": {
+        "latitude": 37.7761,
+        "longitude": -122.4210
+      },
+      "preferred_distance": 5.0,
+      "goal": "I'm feeling good. Let's make this a 10km"
+    },
+    {
+      "datetime": "2025-03-09T08:10:00Z",
+      "location": {
+        "latitude": 37.7755,
+        "longitude": -122.4201
+      },
+      "distance_traveled": 1.2,
+      "heartrate": 130,
+      "destination": {
+        "latitude": 37.7761,
+        "longitude": -122.4210
+      },
+      "preferred_distance": 5.0
+    },
+  ]
+}
