@@ -55,6 +55,7 @@ def stream_data(ws):
     encoded_audio = read_audio()
     file_idx = 0
 
+    is_streaming = False
     while True:
         message = ws.receive()  # Wait for client message
         if message == "start":
