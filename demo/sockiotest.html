@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Socket.IO Test</title>
+  <!-- Load the Socket.IO client from a CDN -->
+  <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+</head>
+<body>
+  <script>
+    // Connect to your Flask-SocketIO server (running on localhost:5001)
+    const socket = io('http://localhost:5001');
+
+    // Listen for successful connection
+    socket.on('connect', () => {
+      console.log('Browser connected to server via Socket.IO!');
+      // Now request a stream
+      socket.emit('request_stream');
+    });
+
+    // Listen for the 'data' event
+    socket.on('data', (item) => {
+      console.log('Received data item:', item);
+    });
+  </script>
+</body>
+</html>
