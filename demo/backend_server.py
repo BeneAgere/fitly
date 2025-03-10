@@ -40,12 +40,12 @@ def read_audio():
     encoded_audio = {}
     for file in ('one', 'two', 'three', 'four', 'five'):
         try:
-            with open("../{file}.m4a", "rb") as audio_file:
+            with open("audio/{file}.m4a".format(file=file), "rb") as audio_file:
                 audio_bytes = audio_file.read()
                 encoded_audio_file = base64.b64encode(audio_bytes).decode("utf-8")
                 encoded_audio[file] = encoded_audio_file
         except:
-            print("failed to encode {}".format(file))
+            print(f"failed to encode {file}".format(file=file))
     return encoded_audio
 
 @sock.route('/')
@@ -54,20 +54,19 @@ def stream_data(ws):
     generator = read_json()
     encoded_audio = read_audio()
     file_idx = 0
-
+    file_names = ['one','two','three','four','five']
     is_streaming = False
     while True:
         message = ws.receive()  # Wait for client message
         if message == "start":
             is_streaming = True
-            ws.send("Streaming started...")
             for idx, item in enumerate(generator):
                 if not is_streaming:
                     break  # Stop sending if 'end' is received
-                if idx % 100:
-                    item['content'] = encoded_audio[file_idx]
+                if idx % 100 == 0:
+                    item['content'] = encoded_audio[file_names[file_idx]]
                     file_idx += 1
-                ws.send(item)
+                ws.send(json.dumps(item))
                 gevent.sleep(1)
         elif message == "end":
             is_streaming = False
@@ -75,4 +74,4 @@ def stream_data(ws):
             break  # Close the WebSocket connection
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False, host='0.0.0.0', port=5001)
