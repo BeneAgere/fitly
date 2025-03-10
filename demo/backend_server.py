@@ -1,10 +1,11 @@
 from flask import Flask, request, jsonify
-from flask_socketio import SocketIO, emit
+from flask_sock import Sock
+import gevent
 import json
-import time
 
+# Initialize Flask and Flask-Sock
 app = Flask(__name__)
-socketio = SocketIO(app, cors_allowed_origins="*")
+sock = Sock(app)
 
 # Sample large JSON file
 JSON_FILE = "interpolated_gps_trace.json"
@@ -31,24 +32,13 @@ def upload_route_points():
     # Process the data (example: forward to another API)
     return jsonify({"message": "Data received", "received_data": data})
 
-@socketio.on('connect')
-def handle_connect():
-    """Handle new WebSocket connection."""
-    print("Client connected")
-
-@socketio.on('request_stream')
-def handle_stream_request():
-    """Handles client requests to start streaming data."""
-    print("Starting data stream")
-    stream_data()
-
-def stream_data():
+@sock.route('/')
+def stream_data(ws):
     """WebSocket function that streams data every 1 second."""
     generator = read_json()
     for item in generator:
-        emit('data', item)
-        # Using sleep from time module instead of gevent
-        socketio.sleep(1)  # SocketIO's built-in sleep
+        ws.send(item)
+        gevent.sleep(1)
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True, host='0.0.0.0', port=5001)
+    app.run(debug=True)  # Running the app without initializing it again
