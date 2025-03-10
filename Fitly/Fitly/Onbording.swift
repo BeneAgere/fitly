@@ -1,7 +1,7 @@
 //
 //  LoginScreen.swift
 //
-//  Created by angel zambrano on 2/20/25.
+//  Created by angel zambrano on 
 //
 
 import SwiftUI
@@ -25,29 +25,26 @@ struct Onbording: View {
         
         
         if !viewModel.isSLiderValueCompleted {
-            Text("Tone Of Trainer")
+            Text("Level Of Experience")
                 .bold()
                 .font(.system(size: 40))
                 .frame(maxWidth: .infinity, alignment: .leading) // Align text to the leading edge
                 .padding([.leading,.top])
             
             VStack {
-                // Labels for the slider extremes
                 
-                // Slider goes from -1 to 1
                 Slider(value: $sliderValue, in: -1...1, step: 0.01)
                     .accentColor(.green) // Set the color to green
                     .padding()
                 
                 HStack {
-                    Text("Kind")
+                    Text("Beginner")
                         .font(.headline)
                     Spacer()
-                    Text("Drill Sergeant")
+                    Text("advanced")
                         .font(.headline)
                 }
                 .padding(.horizontal)
-                
                 
                 Spacer()
                 CustomButton(title: "Next") {
@@ -104,9 +101,6 @@ struct Onbording: View {
                      viewModel.isGender = true
                  }
              }
-             
-            
-
             
         } else if !viewModel.isname {
             Text("What is your name")
@@ -121,7 +115,6 @@ struct Onbording: View {
                        .frame(height: 50) // Adjust height if needed
                        .padding([.leading, .trailing]) // Add padding for spacing
             
-            
             Spacer()
             CustomButton(title: "Next") {
                 viewModel.isname = true
@@ -129,7 +122,7 @@ struct Onbording: View {
         }
         
         else if !viewModel.DidofTenWorkOut {
-            Text("Choose a Voice")
+            Text("Choose Running Goal")
                  .bold()
                  .font(.system(size: 40))
                  .frame(maxWidth: .infinity, alignment: .leading) // Align text to the leading edge
@@ -138,46 +131,46 @@ struct Onbording: View {
              VStack(alignment: .leading, spacing: 10) {
                  // Option: Frequently
                  Button(action: {
-                     viewModel.oftenWorkOut = "alloy"
+                     viewModel.oftenWorkOut = "Be More Active"
                  }) {
                      HStack {
                          Circle()
                              .strokeBorder(Color.green, lineWidth: 2)
-                             .background(Circle().fill(viewModel.oftenWorkOut == "alloy" ? Color.green : Color.clear))
+                             .background(Circle().fill(viewModel.oftenWorkOut == "Be More Active" ? Color.green : Color.clear))
                              .frame(width: 20, height: 20)
-                         Text("alloy")
-                             .foregroundColor(viewModel.oftenWorkOut == "alloy" ? .green : .gray)
+                         Text("Be More Active")
+                             .foregroundColor(viewModel.oftenWorkOut == "Be More Active" ? .green : .gray)
                      }
                      .frame(maxWidth: .infinity, alignment: .leading) // Ensure leading alignment
                  }
 
                  // Option: Sometimes
                  Button(action: {
-                     viewModel.oftenWorkOut = "echo"
+                     viewModel.oftenWorkOut = "Run a 10k"
                  }) {
                      HStack {
                          Circle()
                              .strokeBorder(Color.green, lineWidth: 2)
-                             .background(Circle().fill(viewModel.oftenWorkOut == "echo" ? Color.green : Color.clear))
+                             .background(Circle().fill(viewModel.oftenWorkOut == "Run a 10k" ? Color.green : Color.clear))
                              .frame(width: 20, height: 20)
-                         Text("echo")
-                             .foregroundColor(viewModel.oftenWorkOut == "echo" ? .green : .gray)
+                         Text("Run a 10k")
+                             .foregroundColor(viewModel.oftenWorkOut == "Run a 10k" ? .green : .gray)
                      }
                      .frame(maxWidth: .infinity, alignment: .leading) // Ensure leading alignment
                  }
 
                  // Option: Never
                  Button(action: {
-                     viewModel.oftenWorkOut = "sexy"
+                     viewModel.oftenWorkOut = "Run A Marathon"
                     
                  }) {
                      HStack {
                          Circle()
                              .strokeBorder(Color.green, lineWidth: 2)
-                             .background(Circle().fill(viewModel.oftenWorkOut == "sexy" ? Color.green : Color.clear))
+                             .background(Circle().fill(viewModel.oftenWorkOut == "Run A Marathon" ? Color.green : Color.clear))
                              .frame(width: 20, height: 20)
-                         Text("sexy")
-                             .foregroundColor(viewModel.oftenWorkOut == "sexy" ? .green : .gray)
+                         Text("Run A Marathon")
+                             .foregroundColor(viewModel.oftenWorkOut == "Run A Marathon" ? .green : .gray)
                      }
                      .frame(maxWidth: .infinity, alignment: .leading) // Ensure leading alignment
                  }

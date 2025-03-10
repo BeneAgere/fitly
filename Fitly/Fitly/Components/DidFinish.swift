@@ -2,7 +2,7 @@
 //  DidFinish.swift
 //  AnswersAIHackathon
 //
-//  Created by angel zambrano on 2/22/25.
+//  Created by angel zambrano on
 //
 
 import SwiftUI
