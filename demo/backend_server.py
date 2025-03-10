@@ -34,11 +34,24 @@ def upload_route_points():
 
 @sock.route('/')
 def stream_data(ws):
-    """WebSocket function that streams data every 1 second."""
+    """WebSocket function that streams data when 'start' message is received and stops when 'end' message is received."""
     generator = read_json()
-    for item in generator:
-        ws.send(item)
-        gevent.sleep(1)
+    is_streaming = False  # Track whether the streaming should be active
+
+    while True:
+        message = ws.receive()  # Wait for client message
+        if message == "start":
+            is_streaming = True
+            ws.send("Streaming started...")
+            for item in generator:
+                if not is_streaming:
+                    break  # Stop sending if 'end' is received
+                ws.send(item)
+                gevent.sleep(1)
+        elif message == "end":
+            is_streaming = False
+            ws.send("Streaming stopped.")
+            break  # Close the WebSocket connection
 
 if __name__ == '__main__':
-    app.run(debug=True)  # Running the app without initializing it again
+    app.run(debug=True)
