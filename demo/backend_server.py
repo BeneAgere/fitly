@@ -7,7 +7,7 @@ app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*")
 
 # Sample large JSON file
-JSON_FILE = "demo/interpolated_gps_trace.json"
+JSON_FILE = "interpolated_gps_trace.json"
 
 def read_json():
     """Generator function to read and yield objects from a large JSON array."""
