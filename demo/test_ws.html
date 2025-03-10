@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Test Client</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #log { height: 400px; border: 1px solid #ccc; overflow-y: scroll; padding: 10px; margin-top: 10px; }
+        button { padding: 8px 16px; margin-right: 10px; }
+    </style>
+</head>
+<body>
+    <h1>WebSocket Test Client</h1>
+    <button id="connect">Connect</button>
+    <button id="disconnect" disabled>Disconnect</button>
+    <button id="requestStream" disabled>Request Stream</button>
+    <div id="status">Status: Disconnected</div>
+    <h3>Data Log:</h3>
+    <div id="log"></div>
+
+    <script>
+        let socket;
+        const connectBtn = document.getElementById('connect');
+        const disconnectBtn = document.getElementById('disconnect');
+        const requestStreamBtn = document.getElementById('requestStream');
+        const statusDiv = document.getElementById('status');
+        const logDiv = document.getElementById('log');
+
+        function appendToLog(message) {
+            const item = document.createElement('div');
+            item.textContent = message;
+            logDiv.appendChild(item);
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        connectBtn.addEventListener('click', () => {
+            // Connect to the WebSocket server
+            socket = io('http://localhost:5001');
+            
+            socket.on('connect', () => {
+                statusDiv.textContent = 'Status: Connected';
+                connectBtn.disabled = true;
+                disconnectBtn.disabled = false;
+                requestStreamBtn.disabled = false;
+                appendToLog('Connected to server');
+            });
+
+            socket.on('disconnect', () => {
+                statusDiv.textContent = 'Status: Disconnected';
+                connectBtn.disabled = false;
+                disconnectBtn.disabled = true;
+                requestStreamBtn.disabled = true;
+                appendToLog('Disconnected from server');
+            });
+
+            socket.on('data', (data) => {
+                appendToLog(`Received: ${JSON.stringify(data)}`);
+            });
+        });
+
+        disconnectBtn.addEventListener('click', () => {
+            if (socket) {
+                socket.disconnect();
+            }
+        });
+
+        requestStreamBtn.addEventListener('click', () => {
+            if (socket && socket.connected) {
+                socket.emit('request_stream');
+                appendToLog('Requested data stream');
+            }
+        });
+    </script>
+</body>
+</html>
